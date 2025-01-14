@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="prime1"/>
+        <attribute name="authors" value="Mark A Puddephat"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-12-30 02:19:35 PM"/>
+        <attribute name="created" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI0LTEyLTI5OzA3OjM4OjUxIFBNOzM0OTc="/>
+        <attribute name="edited" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI0LTEyLTMwOzAyOjE5OjM1IFBNOzEyOzM2NDM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="number" type="Integer" array="False" size=""/>
+            <declare name="count" type="Integer" array="False" size=""/>
+            <declare name="divisor" type="Integer" array="False" size=""/>
+            <declare name="divisorsquare" type="Integer" array="False" size=""/>
+            <declare name="primes" type="Integer" array="True" size="25"/>
+            <declare name="primesquares" type="Integer" array="True" size="25"/>
+            <declare name="primepointer" type="Integer" array="False" size=""/>
+            <declare name="remainder" type="Integer" array="False" size=""/>
+            <declare name="isprime" type="Boolean" array="False" size=""/>
+            <output expression="2" newline="True"/>
+            <assign variable="primes[0]" expression="2"/>
+            <assign variable="primesquares[0]" expression="4"/>
+            <output expression="3" newline="True"/>
+            <assign variable="primes[1]" expression="3"/>
+            <assign variable="primesquares[1]" expression="9"/>
+            <assign variable="number" expression="3"/>
+            <for variable="count" start="2" end="24" direction="inc" step="1">
+                <breakpoint expression="" always="True"/>
+                <do expression="!isprime">
+                    <assign variable="number" expression="2 + number"/>
+                    <assign variable="primepointer" expression="1"/>
+                    <assign variable="divisor" expression="primes[primepointer]"/>
+                    <assign variable="divisorsquare" expression="primesquares[primepointer]"/>
+                    <assign variable="isprime" expression="true"/>
+                    <while expression="isprime and divisorsquare &lt;= number">
+                        <assign variable="remainder" expression="number % divisor"/>
+                        <if expression="remainder == 0">
+                            <then>
+                                <assign variable="isprime" expression="false"/>
+                            </then>
+                            <else>
+                                <assign variable="primepointer" expression="1 + primepointer"/>
+                                <assign variable="divisor" expression="primes[primepointer]"/>
+                                <assign variable="divisorsquare" expression="primesquares[primepointer]"/>
+                            </else>
+                        </if>
+                    </while>
+                    <if expression="isprime">
+                        <then>
+                            <assign variable="primes[count]" expression="number"/>
+                            <assign variable="primesquares[count]" expression="number * number"/>
+                            <output expression="number" newline="True"/>
+                        </then>
+                        <else/>
+                    </if>
+                </do>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

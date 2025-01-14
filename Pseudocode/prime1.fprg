@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="prime1"/>
+        <attribute name="authors" value="Mark A Puddephat"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-12-30 02:50:25 PM"/>
+        <attribute name="created" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI0LTEyLTI5OzA3OjM4OjUxIFBNOzM0OTc="/>
+        <attribute name="edited" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI0LTEyLTMwOzAyOjUwOjI1IFBNOzc7MzU5Mw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="number" type="Integer" array="False" size=""/>
+            <declare name="count" type="Integer" array="False" size=""/>
+            <declare name="divisor" type="Integer" array="False" size=""/>
+            <declare name="remainder" type="Integer" array="False" size=""/>
+            <declare name="isprime" type="Boolean" array="False" size=""/>
+            <assign variable="number" expression="1"/>
+            <for variable="count" start="1" end="5" direction="inc" step="1">
+                <breakpoint expression="" always="True"/>
+                <do expression="!isprime">
+                    <assign variable="number" expression="1 + number"/>
+                    <assign variable="divisor" expression="2"/>
+                    <assign variable="isprime" expression="true"/>
+                    <while expression="isprime and divisor &lt; number">
+                        <assign variable="remainder" expression="number % divisor"/>
+                        <if expression="remainder == 0">
+                            <then>
+                                <assign variable="isprime" expression="false"/>
+                            </then>
+                            <else>
+                                <assign variable="divisor" expression="1 + divisor"/>
+                            </else>
+                        </if>
+                    </while>
+                    <if expression="isprime">
+                        <then>
+                            <output expression="number" newline="True"/>
+                        </then>
+                        <else/>
+                    </if>
+                </do>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
