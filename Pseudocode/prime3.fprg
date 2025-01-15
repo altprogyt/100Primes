@@ -4,9 +4,9 @@
         <attribute name="name" value="prime1"/>
         <attribute name="authors" value="Mark A Puddephat"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-12-30 02:28:40 PM"/>
+        <attribute name="saved" value="2025-01-15 07:23:42 PM"/>
         <attribute name="created" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI0LTEyLTI5OzA3OjM4OjUxIFBNOzM0OTc="/>
-        <attribute name="edited" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI0LTEyLTMwOzAyOjI4OjQwIFBNOzEzOzM2NDA="/>
+        <attribute name="edited" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI1LTAxLTE1OzA3OjIzOjQyIFBNOzE0OzM2NDU="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -19,7 +19,7 @@
             <declare name="isprime" type="Boolean" array="False" size=""/>
             <output expression="2" newline="True"/>
             <assign variable="number" expression="1"/>
-            <for variable="count" start="1" end="9" direction="inc" step="1">
+            <for variable="count" start="1" end="99" direction="inc" step="1">
                 <breakpoint expression="" always="True"/>
                 <do expression="!isprime">
                     <assign variable="number" expression="2 + number"/>
