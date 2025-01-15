@@ -7,7 +7,7 @@ setlocal
 echo 1: 2
 echo 1: 2 >&2
 set /a number=1
-for /l %%a in (2;1;25) do call :nextprime %%a
+for /l %%a in (2;1;100) do call :nextprime %%a
 
 endlocal
 exit /b

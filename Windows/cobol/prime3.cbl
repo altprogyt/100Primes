@@ -33,7 +33,7 @@
            move 2 to ls-disp-number
            display ls-display-area
 
-           perform varying ls-count from 2 by 1 until ls-count > 1000
+           perform varying ls-count from 2 by 1 until ls-count > 100
                set is-prime to false
 
                perform until is-prime

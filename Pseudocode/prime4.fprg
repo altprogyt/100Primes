@@ -4,9 +4,9 @@
         <attribute name="name" value="prime1"/>
         <attribute name="authors" value="Mark A Puddephat"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2025-01-15 07:26:01 PM"/>
+        <attribute name="saved" value="2025-01-15 10:27:27 PM"/>
         <attribute name="created" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI0LTEyLTI5OzA3OjM4OjUxIFBNOzM0OTc="/>
-        <attribute name="edited" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI1LTAxLTE1OzA3OjI2OjAxIFBNOzEzOzM2NDI="/>
+        <attribute name="edited" value="TWFyayBBIFB1ZGRlcGhhdDtNUExYNi1XSU4xMTsyMDI1LTAxLTE1OzEwOjI3OjI3IFBNOzE0OzM2NDY="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -15,8 +15,8 @@
             <declare name="count" type="Integer" array="False" size=""/>
             <declare name="divisor" type="Integer" array="False" size=""/>
             <declare name="divisorsquare" type="Integer" array="False" size=""/>
-            <declare name="primes" type="Integer" array="True" size="25"/>
-            <declare name="primesquares" type="Integer" array="True" size="25"/>
+            <declare name="primes" type="Integer" array="True" size="100"/>
+            <declare name="primesquares" type="Integer" array="True" size="100"/>
             <declare name="primepointer" type="Integer" array="False" size=""/>
             <declare name="remainder" type="Integer" array="False" size=""/>
             <declare name="isprime" type="Boolean" array="False" size=""/>

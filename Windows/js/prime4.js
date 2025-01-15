@@ -16,7 +16,7 @@ function main() {
     primes[1] = 3;
     primesquares[1] = 9;
     number = 3;
-    for (count = 2; count <= 99; count++) {
+    for (count = 2; count < 100; count++) {
         do {
             number = 2 + number;
             primepointer = 1;

@@ -8,7 +8,7 @@ function main() {
 
     console.log(2);
     number = 1;
-    for (count = 1; count <= 99; count++) {
+    for (count = 1; count < 100; count++) {
         do {
             number = 2 + number;
             divisor = 3;
@@ -29,5 +29,4 @@ function main() {
         } while (!isprime);
     }
 }
-
 main();

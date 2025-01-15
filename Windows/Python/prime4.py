@@ -1,30 +1,23 @@
-primes = [0] * (25)
-primesquares = [0] * (25)
+#!/usr/bin/python3
+#-----------------------------------------------------------------------------------------------------------------------
+# prime4:   Generate the first 100 prime numbers.
+#-----------------------------------------------------------------------------------------------------------------------
 
-print(2)
-primes[0] = 2
-primesquares[0] = 4
-print(3)
-primes[1] = 3
-primesquares[1] = 9
+primes = [(2, 4), (3, 9)]
 number = 3
-for count in range(2, 24 + 1, 1):
-    while True:    #This simulates a Do Loop
+
+for count in range(2, 100):
+    while True:
         number = 2 + number
-        primepointer = 1
-        divisor = primes[primepointer]
-        divisorsquare = primesquares[primepointer]
-        isprime = True
-        while isprime and divisorsquare <= number:
-            remainder = number % divisor
+
+        for prime_data in list(x for x in primes if x[1] <= number):
+            remainder = number % prime_data[0]
             if remainder == 0:
-                isprime = False
-            else:
-                primepointer = 1 + primepointer
-                divisor = primes[primepointer]
-                divisorsquare = primesquares[primepointer]
-        if isprime:
-            primes[count] = number
-            primesquares[count] = number * number
-            print(number)
-        if isprime: break
+                break
+        else:
+            new_prime = (number, number * number)
+            primes.append(new_prime)
+            break
+
+for prime_data in primes:
+    print(prime_data[0])

@@ -5,7 +5,7 @@ setlocal
 
 :: Starting values
 set /a number=1
-for /l %%a in (1;1;25) do call :nextprime %%a
+for /l %%a in (1;1;100) do call :nextprime %%a
 
 endlocal
 exit /b
