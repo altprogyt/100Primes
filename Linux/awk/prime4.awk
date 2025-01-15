@@ -11,7 +11,7 @@ BEGIN {
 
     number=3
 
-    for (count=2; count<=99; count++) {
+    for (count=2; count<100; count++) {
         do {
             number+=2
             primepointer=1

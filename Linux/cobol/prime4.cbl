@@ -36,7 +36,7 @@
                    15  filler              pic x(32)
                            value '        :               '.
            05  filler redefines ls-prime-table-area.
-               10  ls-prime-info           occurs 1000 times.
+               10  ls-prime-info           occurs 100 times.
                    15  ls-display-area.
                        20  ls-disp-prefix  pic z(07)9(01).
                        20  filler          pic x(02).
@@ -48,7 +48,7 @@
        procedure division.
 
        0000-main.
-           perform varying ls-count from 3 by 1 until ls-count > 1000
+           perform varying ls-count from 3 by 1 until ls-count > 100
                set is-prime to false
                
                perform until is-prime
@@ -76,7 +76,7 @@
                end-perform
            end-perform
 
-           perform varying sub1 from 1 by 1 until sub1 > 1000
+           perform varying sub1 from 1 by 1 until sub1 > 100
                display ls-display-area(sub1)
            end-perform
 

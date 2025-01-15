@@ -1,27 +1,18 @@
 #include <iostream>
-#include <sstream>
-#include <string>
-#include <cstdlib>
-#include <cmath>
 
 using namespace std;
 
-// Headers
-string toString (double);
-int toInt (string);
-double toDouble (string);
-
-int main() {
-    int number;
+int main(int argc, char* argv[]) {
+    int number = 1;
     int count;
     int divisor;
     int divisorsquare;
     int remainder;
     bool isprime;
 
-    cout << 2 << endl;
-    number = 1;
-    for (count = 1; count <= 9; count++) {
+    cout << "2" << endl;
+
+    for (count = 1; count <100; count++) {
         do {
             number = 2 + number;
             divisor = 3;
@@ -42,19 +33,4 @@ int main() {
         } while (!isprime);
     }
     return 0;
-}
-
-// The following implements type conversion functions.
-string toString (double value) { //int also
-    stringstream temp;
-    temp << value;
-    return temp.str();
-}
-
-int toInt (string text) {
-    return atoi(text.c_str());
-}
-
-double toDouble (string text) {
-    return atof(text.c_str());
 }

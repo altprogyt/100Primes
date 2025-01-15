@@ -1,14 +1,14 @@
 import java.util.*;
 import java.lang.Math;
 
-public class Program {
+public class prime4 {
     public static void main(String[] args) {
         int number;
         int count;
         int divisor;
         int divisorsquare;
-        int[] primes = new int[25];
-        int[] primesquares = new int[25];
+        int[] primes = new int[100];
+        int[] primesquares = new int[100];
         int primepointer;
         int remainder;
         boolean isprime;
@@ -20,7 +20,7 @@ public class Program {
         primes[1] = 3;
         primesquares[1] = 9;
         number = 3;
-        for (count = 2; count <= 24; count++) {
+        for (count = 2; count < 100; count++) {
             do {
                 number = 2 + number;
                 primepointer = 1;

@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.Math;
 
-public class Program {
+public class prime3 {
     public static void main(String[] args) {
         int number;
         int count;
@@ -12,7 +12,7 @@ public class Program {
 
         System.out.println(2);
         number = 1;
-        for (count = 1; count <= 9; count++) {
+        for (count = 1; count < 100; count++) {
             do {
                 number = 2 + number;
                 divisor = 3;

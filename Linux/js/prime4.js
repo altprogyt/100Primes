@@ -3,20 +3,20 @@ function main() {
     var count;
     var divisor;
     var divisorsquare;
-    var primes = createArray(25);
-    var primesquares = createArray(25);
+    var primes = new Array(100);
+    var primesquares = new Array(100);
     var primepointer;
     var remainder;
     var isprime;
 
-    window.alert(2);
+    console.log(2);
     primes[0] = 2;
     primesquares[0] = 4;
-    window.alert(3);
+    console.log(3);
     primes[1] = 3;
     primesquares[1] = 9;
     number = 3;
-    for (count = 2; count <= 24; count++) {
+    for (count = 2; count < 100; count++) {
         do {
             number = 2 + number;
             primepointer = 1;
@@ -36,8 +36,9 @@ function main() {
             if (isprime) {
                 primes[count] = number;
                 primesquares[count] = number * number;
-                window.alert(number);
+                console.log(number);
             }
         } while (!isprime);
     }
 }
+main();

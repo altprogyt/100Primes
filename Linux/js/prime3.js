@@ -6,9 +6,9 @@ function main() {
     var remainder;
     var isprime;
 
-    window.alert(2);
+    console.log(2);
     number = 1;
-    for (count = 1; count <= 9; count++) {
+    for (count = 1; count < 100; count++) {
         do {
             number = 2 + number;
             divisor = 3;
@@ -24,8 +24,9 @@ function main() {
                 }
             }
             if (isprime) {
-                window.alert(number);
+                console.log(number);
             }
         } while (!isprime);
     }
 }
+main();
