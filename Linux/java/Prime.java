@@ -1,5 +1,3 @@
-import java.security.PKCS12Attribute;
-
 public class Prime {
     private int number;
     private long square;

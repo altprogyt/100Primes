@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.Math;
 import java.io.*;
 
 public class prime4a {
