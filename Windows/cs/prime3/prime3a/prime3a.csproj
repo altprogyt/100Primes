@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E6096D63-C26B-4F9E-A8EE-CB3FB1384519}</ProjectGuid>
+    <ProjectGuid>{CE154A03-1CA6-4480-9FFF-F6EFC746BE50}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>prime4</RootNamespace>
-    <AssemblyName>prime4</AssemblyName>
+    <RootNamespace>prime3a</RootNamespace>
+    <AssemblyName>prime3a</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="prime4.cs" />
+    <Compile Include="prime3a.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

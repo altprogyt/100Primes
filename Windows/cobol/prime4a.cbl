@@ -2,7 +2,7 @@
       * prime3: Generate the first 100 primes                          *
       ******************************************************************
        identification division.
-       program-id. prime5a.
+       program-id. prime4a.
 
        environment division.
 
@@ -34,20 +34,10 @@
 
        78  c-stdout                        value '/dev/stdout'.
 
-       *> List pointers
-       77  ls-prime-head                   usage pointer.
-       77  ls-prime-ptr                    usage pointer.
-       77  ls-prime-temp                   usage pointer.
-
-       01  prime-data                      based.
-           05  pd-next                     usage pointer.
-           05  pd-seq                      binary-int unsigned.
-           05  pd-value                    binary-int unsigned.
-           05  pd-square                   binary-long unsigned.
-
-       01  filler.                         *> Misc variables
+       01  filler.
            05  ls-number                   binary-int value 1.
            05  ls-count                    binary-int unsigned.
+           05  ls-prime-pointer            binary-int unsigned.
            05  ls-count-display            pic z(19)9(01).
            05  ls-divisor                  binary-int unsigned.
            05  ls-divisor-sq               binary-long unsigned.
@@ -94,6 +84,12 @@
                10  ls-output-status        pic 9(01)x(01).
                    88  output-status-ok    value '00'.
                10  filler                  pic x(04).
+       01  filler.
+           05  ls-primes                   occurs 1 to 268435455 times
+                                           depending on ls-max-primes.
+               10  ls-prime-seq            binary-int unsigned.
+               10  ls-prime-value          binary-int unsigned.
+               10  ls-prime-square         binary-long unsigned.
 
        procedure division.
 
@@ -105,11 +101,7 @@
            end-if
 
            perform 1000-get-command-line
-
-           if not fatal-error
-               perform 2000-generate-primes
-           end-if
-
+           perform 2000-generate-primes
            perform 3000-termination
 
            goback
@@ -139,33 +131,26 @@
            end-if
            .
        2000-generate-primes.
-           perform 4100-allocate-first-prime
-           move 1 to ls-count
-
-           if fatal-error
-               exit paragraph
-           end-if
+           move 1 to ls-prime-seq(1)
+           move 2 to ls-prime-value(1)
+           move 4 to ls-prime-square(1)
 
            if ls-max-primes > 1
-               move 2 to ls-count
-               move 3 to ls-number
+               move 2 to ls-prime-seq(2)
+               move 3 to ls-prime-value(2)
+               move 9 to ls-prime-square(2)
 
-               perform 4200-allocate-next-prime
-
-               if fatal-error
-                   exit paragraph
-               end-if
-
-               perform varying ls-count from 3 by 1 
+               perform varying ls-count from 2 by 1 
                        until ls-count > ls-max-primes
+                   move 2 to ls-prime-pointer
 
                    perform until exit
                        add 2 to ls-number
+                       move ls-prime-value(ls-prime-pointer) 
+                               to ls-divisor
+                       move ls-prime-square(ls-prime-pointer) 
+                               to ls-divisor-sq
                        set is-prime to true
-                       set ls-prime-temp to ls-prime-head
-                       set address of prime-data to ls-prime-temp
-                       move pd-value to ls-divisor
-                       move pd-square to ls-divisor-sq
 
                        perform until ls-divisor-sq > ls-number
                            divide ls-number by ls-divisor 
@@ -175,25 +160,21 @@
                                set is-prime to false
                                exit perform
                            else
-                               set ls-prime-temp to pd-next
-
-                               if ls-prime-temp = null
-                                   exit perform
-                               end-if
-
-                               set address of prime-data 
-                                       to ls-prime-temp
-                               move pd-value to ls-divisor
-                               move pd-square to ls-divisor-sq
-                          end-if
+                               add 1 to ls-prime-pointer
+                               move ls-prime-value(ls-prime-pointer) 
+                                       to ls-divisor
+                               move ls-prime-square(ls-prime-pointer) 
+                                       to ls-divisor-sq
+                           end-if
                        end-perform
 
                        if is-prime
-                           perform 4200-allocate-next-prime
-                           
+                           move ls-count to ls-prime-seq(ls-count)
+                           move ls-number to ls-prime-value(ls-count)
+                           multiply ls-number by ls-number
+                                   giving ls-prime-square(ls-count)
                            exit perform
                        end-if
-               
                    end-perform
 
                    divide ls-count by 1000 giving ls-count-quotient
@@ -202,40 +183,24 @@
                        move ls-count to ls-count-display
                        display ls-count-display ' primes found.'
                    end-if
-
-                   if fatal-error
-                       exit perform
-                   end-if
                end-perform
-
-               if fatal-error
-                   exit paragraph
-               end-if
            end-if
            .
        3000-termination.  
-           set ls-prime-ptr to ls-prime-head
-
-           perform until ls-prime-ptr = null
-               set address of prime-data to ls-prime-ptr
-               move pd-seq to ls-disp-prefix
-               move pd-value to ls-disp-number
+           perform varying ls-count from 1 by 1 
+                   until ls-count > ls-max-primes
+               move ls-prime-seq(ls-count) to ls-disp-prefix
+               move ls-prime-value(ls-count) to ls-disp-number
                move ls-display-area to output-line
                write output-line
-
-               set ls-prime-ptr to pd-next
            end-perform
 
-           if not fatal-error
-               string  ls-max-primes-text  delimited by space
-                       ' primes found.'     delimited by size
-                       into standard-error-line
-               write standard-error-line
-           end-if
+           string  ls-max-primes-text  delimited by space
+                   ' primes found.'     delimited by size
+                   into standard-error-line
+           write standard-error-line
 
            close standard-error output-file
-
-           perform 4300-free-primes
            .
        4000-parse-max-primes.
            set found-first-digit to false
@@ -271,56 +236,4 @@
            else
                move '100' to ls-max-primes-text
            end-if
-           .
-       4100-allocate-first-prime.
-           move null to ls-prime-head
-                        ls-prime-ptr
-                        ls-prime-temp
-
-           call 'malloc' using by value length of prime-data
-                               returning ls-prime-head
-
-           if ls-prime-head = null
-               display 'Error allocating memory to first prime.'
-               set fatal-error to true
-               exit paragraph
-           end-if
-
-           set address of prime-data to ls-prime-head
-           move 1 to pd-seq
-           move 2 to pd-value
-           move 4 to pd-square
-           move null to pd-next
-           move ls-prime-head to ls-prime-ptr
-           .
-       4200-allocate-next-prime.
-           call 'malloc' using by value length of prime-data
-                               returning ls-prime-temp
-
-           if ls-prime-temp = null
-               display 'Error allocating memory to next prime.'
-               set fatal-error to true
-               exit paragraph
-           end-if
-
-           set address of prime-data to ls-prime-ptr
-           set pd-next to ls-prime-temp
-
-           set address of prime-data to ls-prime-temp
-           move ls-count to pd-seq
-           move ls-number to pd-value
-           multiply ls-number by ls-number giving pd-square
-           set pd-next to null
-
-           set ls-prime-ptr to ls-prime-temp
-           .
-       4300-free-primes.
-           set ls-prime-ptr to ls-prime-head
-
-           perform until ls-prime-ptr = null
-               set address of prime-data to ls-prime-ptr
-               set ls-prime-temp to pd-next
-               call 'free' using by value ls-prime-ptr
-               set ls-prime-ptr to ls-prime-temp
-           end-perform
            .
